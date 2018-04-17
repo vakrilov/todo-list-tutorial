@@ -42,7 +42,7 @@ StackBlitz is an online editor which provides you all the functionality of an On
 
 ### Angular-CLI
 
-[Angular-CLI](https://github.com/angular/angular-cli) is a powerful tool that simplifies a lot of the development process. It also installs libraries you'll use in your current and future projects. StackBlitz has it integrated out of the box, which makes it more easier for you.
+[Angular-CLI](https://github.com/angular/angular-cli) is a powerful tool that simplifies a lot of the development process. It also installs libraries you'll use in your current and future projects. StackBlitz has it integrated out of the box, which makes it easier for you.
 
 ### IDE
 
