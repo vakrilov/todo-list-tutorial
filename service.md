@@ -10,6 +10,8 @@ Name the service ``` ng g s todoList```
 
 This command will generate the service and put it under `src/app/todo-list.service.ts`.
 
+If you're using Stackblitz, right click on the app folder, and select "Service". Name the service ```todoList```. It will generate the service and put it under `src/app/todo-list.service.ts`.
+
 ## Make the service a provider
 
 To start using the service, we first need to *provide* it in an ngModule. Start by adding this code in `/src/app/app.module.ts`:
