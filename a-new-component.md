@@ -8,9 +8,9 @@ We'll use the Angular CLI to generate all the needed files and boilerplate for u
 
 Name the component `input` and also make sure it has an inline-template.
 
-> You can avoid manually configuring inline template by setting inline templates as a default in the configuration file `.angular-cli.json`.
+> You can avoid manually configuring inline template by setting inline templates as a default in the configuration file `.angular-cli.json`/`angular.json`.
 >
-> Don't worry about the component name `input`. It will not replace HTML's `input` element. That's thanks to the prefix that the Angular CLI gives to our components. The default prefix is `app`, so the component selector would be `app-input`. If you've created the project stating the prefix of your choice, or changed it afterwards in the file `.angular-cli.json`, this will be the prefix of the selector. When we created the project, we set the prefix to "todo", so the selector should be `todo-input`.
+> Don't worry about the component name `input`. It will not replace HTML's `input` element. That's thanks to the prefix that the Angular CLI gives to our components. The default prefix is `app`, so the component selector would be `app-input`. If you've created the project stating the prefix of your choice, or changed it afterwards in the file `.angular-cli.json`/`angular.json`, this will be the prefix of the selector. When we created the project, we set the prefix to "todo", so the selector should be `todo-input`.
 
 Let's take a look at what the Angular CLI created for us.
 
