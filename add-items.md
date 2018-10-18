@@ -12,23 +12,35 @@ So what we actually want to do is to **emit an event** from the `todo-input` com
 
 Add the following line inside the `InputComponent` class, which defines an output for the component:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 @Output() submit: EventEmitter<string> = new EventEmitter();
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The output property is called `submit`. Make sure that `Output` and `EventEmitter` are added to the import declaration in the first line of the file:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Now, whenever we call `this.submit.emit()`, an event will be emitted to the parent component. Let's call it in the `changeTitle` method:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 changeTitle(newTitle: string): void {
   this.submit.emit(newTitle);
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We delegate everything to the parent component - even actually changing the title of the item if needed. \(The method name may seem irrelevant right now. If you'd like, you can change it to something more appropriate, such as `submitValue`. Remember to change it in the template as well.\)
 
@@ -38,19 +50,29 @@ Nothing else is changed in the `todo-input` component. The events emitted from `
 
 Now all we need to do is catch the event in the parent component and attach logic to it. Go to the `todo-root` component and bind to the `submit` event in the `<todo-input>` component:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
+```typescript
 <todo-input (submit)="addItem($event)"></todo-input>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Now all that's left is to implement the `addItem` method, which receives a string and adds it to the list:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 addItem(title: string): void {
   this.todoList.push({ title });
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Try it out!
 
-[See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-11_Add_items)
+{% hint style="success" %}
+[See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-11_Add_items) 
+{% endhint %}
 

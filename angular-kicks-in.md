@@ -1,11 +1,22 @@
 # \#2: 🅰 Angular kicks in
 
-Let's look at the project and how Angular gets in the picture. All the relevant files at this stage on exist inside the `src` folder.
+Let's look at the project and how Angular gets in the picture. All the relevant files at this stage on exist inside the 📁**src**  folder.
 
-Open the file `index.html`. The content that is rendered in the browser's window is everything you see inside the `<body>` element. All you can see there now is another, non-HTML element: `<todo-root>`. This element is a actually an Angular Component, defined in the file `app/app.component.ts` with the class named **AppComponent**. \(We'll take a look at it in the next chapter\).
+Open the file  ![](.gitbook/assets/html.svg)**index.html**. The content that is rendered in the browser's window is everything you see inside the `<body>` element. All you can see there now is another, non-HTML element: 
+
+{% code-tabs %}
+{% code-tabs-item title="index.html" %}
+```markup
+<todo-root></todo-root>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+This element is a actually an Angular Component, defined in the file   
+![](.gitbook/assets/component.svg)**app.component.ts** with the class named **`AppComponent`**. \(We'll take a look at it in the next chapter\).
 
 {% hint style="info" %}
-StackBlitz![](.gitbook/assets/stackblitz.png) is creating the project by default without a prefix. Then the element you'll see will be `<app-root>`. `app` is the default prefix for the project's component selectors. You can change the configuration in the file `angular.json` \( &lt;v6: `.angular-cli.json` \). Our starting point use the prefix `todo-`.
+StackBlitz![](.gitbook/assets/stackblitz.png) is creating the project by default without a prefix. Then the element you'll see will be `<app-root>`. `app` is the default prefix for the project's component selectors. You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** `angular.json` \( &lt;v6: `.angular-cli.json` \). Our starting point use the prefix `todo-`.
 {% endhint %}
 
 \*\*\*\*
@@ -20,9 +31,13 @@ Angular needs us to define what we want it to compile. For this we define Angula
 
 The last line in the file defines a JavaScript class:
 
+{% code-tabs %}
+{% code-tabs-item title="app.module.ts" %}
 ```typescript
 export class AppModule { }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 `export` is a reserved word in JavaScript which says that whatever is defined after it should be exposed to other files that import this one using the `import` statement. You can see examples of classes imported from other files at the top of this file.
 
@@ -44,9 +59,13 @@ What we pass into the decorator function is used by Angular to decorate the clas
 
 How does Angular know that the `AppModule` is the root ngModule? This is defined in the file `main.ts`:
 
+{% code-tabs %}
+{% code-tabs-item title="main.ts" %}
 ```typescript
 platformBrowserDynamic().bootstrapModule(AppModule)
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We bootstrap our root ngModule to a renderer. This way we tell Angular what ngModule to use as the starting point of our application. And we also choose a renderer: `platformBrowserDynamic`. It knows how to take our code and add the relevant data \(elements, attributes, etc.\) to the browser's DOM.
 
@@ -58,5 +77,9 @@ We've seen how we tell Angular where and how to start its work, how we define th
 
 In the next chapter, we'll see how a component is defined in Angular.
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-02_Angular_kicks_in)
+{% endhint %}
+
+
 
