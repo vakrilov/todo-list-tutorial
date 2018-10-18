@@ -18,7 +18,7 @@ This element is a actually an Angular Component, defined in the file
 ![](.gitbook/assets/component.svg)**app.component.ts** with the class named **`AppComponent`**. \(We'll take a look at it in the next chapter\).
 
 {% hint style="info" %}
-StackBlitz![](.gitbook/assets/stackblitz.png) is creating the project by default without a prefix. Then the element you'll see will be `<app-root>`. **`app`** is the default prefix for the project's component selectors. You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** `angular.json` \( old: ![](.gitbook/assets/json.svg) .**angular.json** \). We use as prefix here  **`todo`**.
+StackBlitz![](.gitbook/assets/stackblitz.png) creates the project with the default prefix `app` as component selector. So the element you'll see will be `<app-root>`You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** \( old: ![](.gitbook/assets/json.svg) .**angular.json** \). We use:  **`todo`**.
 {% endhint %}
 
 \*\*\*\*
@@ -31,7 +31,8 @@ The `<todo-root>` tag starts off empty. Everything inside the tag will be render
 
 ### AppModule
 
-Angular needs us to define what we want it to compile. For this we define Angular Modules, or **ngModules**, which are like packages of related things. These packages can include components, services, directives, pipes, and other ngModules. We already have a root ngModule defined for us in the file `app/app.module.ts`. Let's take a look at this file.
+Angular needs us to define what we want it to compile. For this we define Angular Modules, or **ngModules**, which are like packages of related things. These packages can include components, services, directives, pipes, and other ngModules. We already have a root ngModule defined for us in the   
+📁 **app** folder called ![](.gitbook/assets/module.svg) app.module.ts. Let's take a look at this file.
 
 #### How to define a class
 
@@ -51,7 +52,8 @@ The class `AppModule` is empty. It will get its functionality from Angular, whic
 
 #### What is a decorator?
 
-Every entity in Angular \(ngModules, components, services, directives, and pipes\) is just a **class with a decorator**. The decorator tells Angular the role of this class.
+Every entity in Angular \( ![](.gitbook/assets/module.svg) ngModules, ![](.gitbook/assets/component.svg) components, ![](.gitbook/assets/service.svg)services,   
+![](.gitbook/assets/directive.svg)directives and ![](.gitbook/assets/pipe.svg)pipes\) is just a **class with a decorator**. The decorator tells Angular the role of this class.
 
 `@NgModule({...})` is a decorator. A decorator is just a function. When using it, we put `@` before its name. This way it becomes a decorator: it looks at what is written right after the function call and receives it as an argument. Decorators usually do something with what they decorate. In this case, for example, `NgModule` receives the `AppModule` class and adds methods and members to it that later on will be used by Angular. This way, Angular will recognize that this class represents an ngModule.
 
