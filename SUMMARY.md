@@ -1,6 +1,6 @@
 # Table of contents
 
-* [About](README.md)
+* [👀 About](README.md)
 * [\#0: 💃 Introduction](introduction.md)
 * [\#1: ⌛ Installations](installations.md)
 * [\#2: 🅰 Angular kicks in](angular-kicks-in.md)
