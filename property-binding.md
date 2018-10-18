@@ -6,6 +6,8 @@ Let's make the input control text reflect the value of the `title` property.
 
 This is how our input component looks now:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 import { Component, OnInit } from '@angular/core';
 
@@ -34,6 +36,8 @@ export class InputComponent implements OnInit {
 
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We use interpolation to present the value of the `title` property: `{{ title }}`
 
@@ -55,9 +59,13 @@ Angular lets us bind properties to the template easily and conveniently; we saw 
 <input [value]="title">
 ```
 
-You can go on to the next chapter, but if you'd like to learn more about change detection, keep reading.
 
-## Change Detection
+
+{% hint style="warning" %}
+You can go on to the next chapter, but if you'd like to learn more about change detection, keep reading.
+{% endhint %}
+
+## 🧪 Change Detection
 
 Angular has a very efficient change detection mechanism. It looks for bindings in the components' templates, and then updates the value each time the bound expression is changed.
 
@@ -118,5 +126,9 @@ Excellent.
 
 However, **this is highly discouraged in Angular. You should never access the DOM directly!** That's because you can assign different renderers to Angular and run the application on different platforms. They may be mobile, desktop, or even a robot. And they will not have a `document` object from which you can manipulate the result!
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-06_Property_binding)
+{% endhint %}
+
+
 

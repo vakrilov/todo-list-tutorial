@@ -14,25 +14,34 @@ Here's a diagram of a component in Angular, with the result below.
 
 Directives, pipes, and services are other building blocks in Angular, which we will discuss later in the tutorial.
 
-Let's take a look at the component that was created by the Angular CLI. All the relevant files exist in the folder `src/app`. Open the file `app.component.ts`.
+Let's take a look at the component that was created by the Angular CLI. All the relevant files exist in the folder 📁**src/app** . Open the file   
+![](.gitbook/assets/component.svg) **app.component.ts** .
 
 Just like ngModules that we saw in the previous chapter, a component is also defined by a class with a decorator. This is the class definition:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 export class AppComponent {
   title = 'todo';
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 It has one member called "title". It is a property to which you can assign a value. The value assigned to it here is the string "todo".
 
-Angular takes care of synchronizing the members of the component with the component template. So we can easily use the member `title` in the template. Take a look at the template attached to the component in the file `app.component.html`. Near the top, you'll see code like this:
+Angular takes care of synchronizing the members of the component with the component template. So we can easily use the member `title` in the template. Take a look at the template attached to the component in the file ![](.gitbook/assets/html.svg) **app.component.html**. Near the top, you'll see code like this:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.html" %}
 ```markup
 <h1>
   Welcome to {{ title }}!
 </h1>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The double curly braces and their content are called **Interpolation**. This is one form of **data binding** in Angular. As we mentioned before, the code in this file is not used as-is when the browser renders the component. Angular compiles it to JavaScript code. In one of the compilation steps, it looks for Interpolations inside the template. The content of the Interpolation is an "Angular template expression" \(which is a lot like JavaScript\). The expression is evaluated at runtime, and then you see the result.
 
@@ -48,8 +57,10 @@ In this component, the expression is simply the member of the component class, `
 
 This is one way that you can bind members of the component's controller to its template. How does Angular know that this is the template of the App component?
 
-Let's go back to the file `app.component.ts` and look at the component's metadata defined in the decorator `@Component` right above the class definition:
+Let's go back to the file ![](.gitbook/assets/component.svg) **app.component.ts** and look at the component's metadata defined in the decorator `@Component` right above the class definition:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 @Component({
   selector: 'todo-root',
@@ -57,26 +68,36 @@ Let's go back to the file `app.component.ts` and look at the component's metadat
   styleUrls: ['./app.component.css']
 })
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We pass an object of definitions to the decorator, just like we saw in the previous chapter with ngModule. The second property, `templateUrl`, tells Angular where to look for the template attached to the component. There is another option to point to the template, which we'll discuss later: to write the whole template inline here, in the component definition.
 
-The third property, `styleUrls`, tells Angular where to look for the CSS files that define the style of this component. It can have multiple CSS files. That's why the value of `styleUrls` is an array. You can take a look at the CSS file `app.component.css` - you'll see that it's empty. You can add some CSS style here, for example:
+The third property, `styleUrls`, tells Angular where to look for the CSS files that define the style of this component. It can have multiple CSS files. That's why the value of `styleUrls` is an array. You can take a look at the CSS file ![](.gitbook/assets/css.svg) **app.component.css** - you'll see that it's empty. You can add some CSS style here, for example:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.css" %}
 ```css
 h1 {
   color: red;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We'll add more style later on.
 
-The first property, `selector`, tells Angular what will be the name of the tag that we'll use to call the component. As we saw in the file `src/index.html`, we use the app component inside the body:
+The first property, `selector`, tells Angular what will be the name of the tag that we'll use to call the component. As we saw in the file ![](.gitbook/assets/html.svg) **index.html** , we use the app component inside the body:
 
+{% code-tabs %}
+{% code-tabs-item title="index.html" %}
 ```markup
 <body>
   <todo-root></todo-root>
 </body>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The element `todo-root` is not an HTML element. It is the component that was created with the selector `todo-root`. Try changing the selector. You'll see that if you change it in only one of the files, nothing will be displayed, since the element is no longer replaced with an Angular component. You can see an error message in the browser's console.
 
@@ -84,24 +105,35 @@ One last thing: the first line in the component file imports the code that defin
 
 ## Inline Template
 
-Let's move the template to be **inline** in the component definition. This will help us manage the template while looking at its functionality. In the file `app.component.ts` replace the line
+Let's move the template to be **inline** in the component definition. This will help us manage the template while looking at its functionality. In the file   
+![](.gitbook/assets/component.svg) **app.component.ts** replace the line
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 templateUrl: './app.component.html',
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 with
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 template: ``,
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Notice the **backticks** - they are used to define Template Literals, which are new in JavaScript \(ES6\). This way you can define multi-line strings. They have another cool ability: to easily use JavaScript variables and expressions within the string \(with no relation to Angular binding expressions in the template\). Read about it in the [MDN documentation](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals).
 
 Make sure you replace `templateUrl` with `template`, and don't forget the comma at the end of the line.
 
-Now copy the entire template from `app.component.html` and paste it between the backticks. We'll reformat the code a bit to have it easier on the eye:
+Now copy the entire template from ![](.gitbook/assets/html.svg) **app.component.html** and paste it between the backticks. We'll reformat the code a bit to have it easier on the eye:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 template: `
   <!--The content below is only a placeholder and can be replaced.-->
@@ -125,11 +157,15 @@ template: `
   </ul>
 `,
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 It is easier to manage the template when you see its controller at the same time. This is true as long as the template doesn't get too big and the controller doesn't get too complicated. If they do, it's a sign you should refactor your code by breaking it down to child components.
 
 In fact, there's a lot of stuff we don't need in this template, so let's get rid of most of it:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 template: `
   <h1>
@@ -137,8 +173,10 @@ template: `
   </h1>
 `,
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-At this point you can delete the file `app.component.html`.
+At this point you can ✂ delete the file ![](.gitbook/assets/html.svg) **app.component.html**.
 
 The same way we use inline templates, we can use also inline styles. But for now we will keep the styles in a separate file.
 
@@ -146,5 +184,9 @@ The same way we use inline templates, we can use also inline styles. But for now
 
 We have explored the root component that was generated for us by the Angular CLI, and even refactored it. In the next chapter, we will create a new component. We will start building the tree of components, which defines the structure of the application.
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-03_Component)
+{% endhint %}
+
+
 

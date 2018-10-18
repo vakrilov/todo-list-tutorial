@@ -22,20 +22,28 @@ Let's take a look at the class `InputComponent`.
 
 First, you see something was added to the class declaration:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 export class InputComponent implements OnInit {
   ...
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 `OnInit` is an **interface** - a structure defined but not implemented as a class. It defines which properties and/or methods should exist on the class that implements it. In this case, `OnInit` is an interface for Angular Components which implement the method `ngOnInit`. This method is a **component life-cycle method**. Angular will call this method after the component instance has been created.
 
 The Angular CLI adds this statement to remind us that it's best to initialize things on the component through the `ngOnInit` method. You can see it also added the method in the body of the class:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 ngOnInit() {
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 You can use this method without explicitly indicating that the class implements the `OnInit` interface, but it's useful to use the implementation statement. To see why, delete the `ngOnInit` method. The IDE will tell you there's an error - you must implement `ngOnInit`. How does it know that? Because of `implements OnInit`.
 
@@ -53,14 +61,20 @@ In TypeScript, we must declare members of the class either in the class body out
 
 You can declare a property without initializing it:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 title: string;
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Then you can assign a value at a later stage, for example in the constructor or in the `ngOnInit` method. When referencing a member of the class from within a class method, you must prefix it with `this`. It's a special property that points at the current instance.
 
 Try setting a different value for `title` from inside the constructor. See the result in the browser:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 title: string = 'my title';
 
@@ -68,6 +82,8 @@ constructor() {
   this.title = 'Hello World';
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Try changing the value of `title` inside the method `ngOnInit`. Which value will be displayed on the screen?
 
@@ -75,28 +91,40 @@ Try changing the value of `title` inside the method `ngOnInit`. Which value will
 
 Let's add a method that changes the value of `title` according to the argument we will pass. The method will have one parameter of type `string`. Add the following code inside the class body \(but not inside another method\):
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 changeTitle(newTitle: string): void {
   this.title = newTitle;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The method is called `changeTitle`. It doesn't have a return statement, so we noted that it "returns void". We can change that if we return an actual value. For example:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 changeTitle(newTitle: string): string {
   this.title = newTitle;
   return this.title;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 This method is not used anywhere. We can call it from another method or from the template \(which we will see in the following chapters\). Let's call it from the constructor.
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 constructor() {
   this.changeTitle('I love Angular');
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 ![](.gitbook/assets/lab%20%282%29.jpg)
 
@@ -106,6 +134,8 @@ constructor() {
 
 You can always use `console.log(someValue)` inside class methods. Then the value you passed as an argument will be printed in the browser's console. This way you can see the order of the execution of the methods and the value of the argument you pass \(if it's a variable\). For example:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
 ```typescript
 constructor() {
   console.log('in constructor');
@@ -113,8 +143,14 @@ constructor() {
   console.log(this.title);
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The browser's console is a part of its Dev Tools. You can see how to open the console in different browsers here: [https://webmasters.stackexchange.com/questions/8525/how-do-i-open-the-javascript-console-in-different-browsers](https://webmasters.stackexchange.com/questions/8525/how-do-i-open-the-javascript-console-in-different-browsers)
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-05_Class)
+{% endhint %}
+
+
 
