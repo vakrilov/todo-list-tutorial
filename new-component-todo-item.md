@@ -2,19 +2,23 @@
 
 We will create a new component which will be used for each todo item that is displayed on the list. It will be a simple component at first, but it will grow later on. What's important is that **it will get the todo item as an input from its parent component**. This way it can be a reusable component, and not rely directly on the application's data and state.
 
-Create a new component called `item`
+Create a new component called `item`.  This creates ![](.gitbook/assets/component.svg) **item.component.ts.**
 
-You can see a new folder was created with the component files inside.
+You can see a new folder 📁 **item** was created with the component files inside.
 
 Use the component in the template of `AppComponent`, inside the `<li>` element:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
+```typescript
 <ul>
   <li *ngFor="let item of todoList">
     <todo-item></todo-item>
   </li>
 </ul>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Check out the result in the browser. What do you see? Why?
 
@@ -26,20 +30,30 @@ Again, Angular makes it really easy for us, by providing the `Input` decorator.
 
 Inside the newly generated `ItemComponent` class, add the line:
 
+{% code-tabs %}
+{% code-tabs-item title="item.component.ts" %}
 ```typescript
 @Input() itemTitle: string;
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 It tells the component to expect an input of type string and to assign it to the class member called `itemTitle`. Make sure that `Input` is added to the import statement in the first line in the file. Now we can use it inside the `ItemComponent` template:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="item.component.ts" %}
+```typescript
 {{ itemTitle }}
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 You can add any other HTML elements you'd like here.
 
-Now we need to pass a string, which is the item's title, where we use the component. Go back to `AppComponent` and pass the item title to the `todo-item`:
+Now we need to pass a string, which is the item's title, where we use the component. Go back to ![](.gitbook/assets/component.svg) **app.component.ts** and pass the item title to the `todo-item`:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```markup
 <ul>
   <li *ngFor="let item of todoList">
@@ -47,6 +61,8 @@ Now we need to pass a string, which is the item's title, where we use the compon
   </li>
 </ul>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The `itemTitle` here in square brackets is the same as declared as the component's `@Input`.
 
@@ -58,27 +74,43 @@ We will refactor our code a bit so we can easily implement more functionality in
 
 In `ItemComponent`, change the interpolation in the template to:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="item.component.ts" %}
+```typescript
 {{ todoItem.title }}
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Rename the Input member and change its type:
 
+{% code-tabs %}
+{% code-tabs-item title="item.component.ts" %}
 ```typescript
 @Input() todoItem: any;
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Now pass the whole item to the renamed property in `AppComponent` \(remove the `.title`\):
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
+```typescript
 <ul>
   <li *ngFor="let item of todoList">
     <todo-item [todoItem]="item"></todo-item>
   </li>
 </ul>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We now have a list of components, and each component received its data from the loop in the parent component. Now we'll see how this list can be dynamic.
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-10_New_component_todo-item)
+{% endhint %}
+
+
 
