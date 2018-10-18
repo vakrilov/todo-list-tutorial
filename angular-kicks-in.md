@@ -2,6 +2,8 @@
 
 Let's look at the project and how Angular gets in the picture. All the relevant files at this stage on exist inside the 📁**src**  folder.
 
+### index.html
+
 Open the file  ![](.gitbook/assets/html.svg)**index.html**. The content that is rendered in the browser's window is everything you see inside the `<body>` element. All you can see there now is another, non-HTML element: 
 
 {% code-tabs %}
@@ -16,7 +18,7 @@ This element is a actually an Angular Component, defined in the file
 ![](.gitbook/assets/component.svg)**app.component.ts** with the class named **`AppComponent`**. \(We'll take a look at it in the next chapter\).
 
 {% hint style="info" %}
-StackBlitz![](.gitbook/assets/stackblitz.png) is creating the project by default without a prefix. Then the element you'll see will be `<app-root>`. `app` is the default prefix for the project's component selectors. You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** `angular.json` \( &lt;v6: `.angular-cli.json` \). Our starting point use the prefix `todo-`.
+StackBlitz![](.gitbook/assets/stackblitz.png) is creating the project by default without a prefix. Then the element you'll see will be `<app-root>`. **`app`** is the default prefix for the project's component selectors. You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** `angular.json` \( old: ![](.gitbook/assets/json.svg) .**angular.json** \). We use as prefix here  **`todo`**.
 {% endhint %}
 
 \*\*\*\*
@@ -27,7 +29,11 @@ So `<todo-root>` is not an HTML element, it is an Angular Component. When the ap
 
 The `<todo-root>` tag starts off empty. Everything inside the tag will be rendered by the browser after Angular compiles the application. When Angular is done, the tag will no longer be empty. Instead, you will see the `<todo-root>` component and its content, which starts with "**Welcome to todo!**".
 
+### AppModule
+
 Angular needs us to define what we want it to compile. For this we define Angular Modules, or **ngModules**, which are like packages of related things. These packages can include components, services, directives, pipes, and other ngModules. We already have a root ngModule defined for us in the file `app/app.module.ts`. Let's take a look at this file.
+
+#### How to define a class
 
 The last line in the file defines a JavaScript class:
 
@@ -43,11 +49,15 @@ export class AppModule { }
 
 The class `AppModule` is empty. It will get its functionality from Angular, which will identify its role by the code preceding this line, starting with `@NgModule({`.
 
+#### What is a decorator?
+
 Every entity in Angular \(ngModules, components, services, directives, and pipes\) is just a **class with a decorator**. The decorator tells Angular the role of this class.
 
 `@NgModule({...})` is a decorator. A decorator is just a function. When using it, we put `@` before its name. This way it becomes a decorator: it looks at what is written right after the function call and receives it as an argument. Decorators usually do something with what they decorate. In this case, for example, `NgModule` receives the `AppModule` class and adds methods and members to it that later on will be used by Angular. This way, Angular will recognize that this class represents an ngModule.
 
 What we pass into the decorator function is used by Angular to decorate the class. You can see we pass an object with members; each member is a list of other classes. We'll explain shortly what each member represents.
+
+#### A module consists of ...
 
 **declarations**: a list of Angular things that are relevant in this module. They may use each other \(for example, a directive used in a component\). We pass here only one component - `AppComponent`, because that's all we have in our application right now.
 
@@ -57,7 +67,9 @@ What we pass into the decorator function is used by Angular to decorate the clas
 
 **bootstrap**: this member is relevant only to the root ngModule. You will not find it in the modules in the imports list, for example. It tells Angular which component should be used as the root component of the application. Every component can use other components in its template. We have one root component that starts the whole structure. So we actually get a **tree structure** of the components that build our application. In this case, the root component is `AppComponent` \(with the selector `todo-root`\). We saw it used in `index.html` as the only component inside the `<body>`.
 
-How does Angular know that the `AppModule` is the root ngModule? This is defined in the file `main.ts`:
+### main.ts
+
+How does Angular know that the `AppModule` is the root ngModule? This is defined in the file ![](.gitbook/assets/ts.svg)**main.ts**:
 
 {% code-tabs %}
 {% code-tabs-item title="main.ts" %}
@@ -69,9 +81,13 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 We bootstrap our root ngModule to a renderer. This way we tell Angular what ngModule to use as the starting point of our application. And we also choose a renderer: `platformBrowserDynamic`. It knows how to take our code and add the relevant data \(elements, attributes, etc.\) to the browser's DOM.
 
+### Different platforms
+
 We can use a different renderer at this point, for example one that renders to Android or iOS native elements! We just need a renderer that knows how to take our templates \(which use HTML notation\) and JavaScript code, and create native mobile application elements. An example of such a renderer is [NativeScript](https://www.nativescript.org).
 
 There are even renderers to Arduino, with which you can connect sensors, buttons, LEDs, and other hardware to your application! You can see a great example for this here: [Building Simon with Angular2-IoT](https://medium.com/@urish/building-simon-with-angular2-iot-fceb78bb18e5#.430qu216w)
+
+### Summary
 
 We've seen how we tell Angular where and how to start its work, how we define the root module and the root component, and how we use the root component.
 
