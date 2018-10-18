@@ -1,7 +1,9 @@
 # \#9: 📋 The To Do list
 
-Now you are going to add the todo-list itself to the component `todo-root`. Open the file `src/app/app.component.ts`. Add the list of items inside the `AppComponent` class as an array of objects for each item. At this stage, each item only contains a title:
+Now you are going to add the todo-list itself to the component `todo-root`. Open the file ![](.gitbook/assets/component.svg) **app.component.ts**. Add the list of items inside the `AppComponent` class as an array of objects for each item. At this stage, each item only contains a title:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```typescript
 todoList = [
   {title: 'install NodeJS'},
@@ -12,6 +14,8 @@ todoList = [
   {title: 'deploy app'},
 ];
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 > Putting info \(resources\) right inside your code is called hardcoding and is considered an especially bad practice. Eventually we'll get the list from an external source, but even if not, it's best to place mock data in their own files. But let's advance step-by-step, so defining items this way is okay for now.
 
@@ -19,6 +23,8 @@ Now you have to tell the browser to display those items. For this, you will use 
 
 Insert the loop right after `<todo-input></todo-input>`, this way:
 
+{% code-tabs %}
+{% code-tabs-item title="app.component.ts" %}
 ```markup
 <todo-input></todo-input>
 <ul>
@@ -27,6 +33,8 @@ Insert the loop right after `<todo-input></todo-input>`, this way:
   </li>
 </ul>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 This means "go over all items of the todoList array, and print out an unnumbered list which contains the items' titles". While looping over the `todoList`, each item is assigned to the variable `item`, and we can use this variable inside the `li` element and its children.
 
@@ -44,5 +52,9 @@ In this example, `userLoggedIn` should be a member of the component, and have a 
 
 There are other directives in Angular which are not structural \(and are used without the `*`\). For example `ngStyle` and `ngClass`, with which you can dynamically apply style and classes to the element.
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-09_The_list)
+{% endhint %}
+
+
 
