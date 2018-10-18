@@ -1,4 +1,4 @@
-# Property binding
+# \#6: 📥 Property binding
 
 We now have our input component, but it does not do much. We want to bring it to life.
 

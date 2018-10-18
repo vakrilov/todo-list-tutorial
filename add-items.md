@@ -1,4 +1,4 @@
-# Add items
+# \#11: 📌 Add items
 
 We want to add items to our list. With Angular, we can do this easily and see the item added immediately. We will do this from within the `InputComponent` we created before. We'll change it so when hitting the Enter key or clicking the submit button, the value of the input box will become the title of the new item, and the new item will be added to the list.
 

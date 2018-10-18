@@ -1,4 +1,4 @@
-# Introduction
+# \#0: 💃 Introduction
 
 Angular is much more than a framework. It's a whole platform for creating applications that can run not only on a browser, but anywhere. It gives you tools to advanced capabilities, such as easily creating dynamic components, routes definitions and much more.
 

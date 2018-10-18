@@ -1,4 +1,4 @@
-# Remove item
+# \#17: 🗑 Remove item
 
 The user should be able to remove any item, whether it's still active or completed. Removing an item will be done by clicking a button, aptly named "remove". In this chapter, we'll learn how to add this functionality to our project.
 

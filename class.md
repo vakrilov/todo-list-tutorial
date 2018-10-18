@@ -1,4 +1,4 @@
-# Class
+# \#5: 💼 Class
 
 A class is a special programmatic structure. It is defined with **members** which can be **properties** \(variables\) and **methods** \(functions\). Then instances of the class are created, usually by calling the `new` operator on the class: `let myInstance = new myClass();`. The instance created is an object on which you can call the class methods and get and set the values of its properties. Multiple instances can be created from one class.
 

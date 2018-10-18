@@ -1,4 +1,4 @@
-# Component
+# \#3: 📐 Component
 
 One approach in Web development \(and software development generally\) is component-based architecture. In the past years it has gained a lot of popularity. What is a component?
 

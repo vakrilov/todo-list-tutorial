@@ -1,4 +1,4 @@
-# Event binding
+# \#7: 📤 Event binding
 
 We want our application to react to the user's actions. We want to update the title of the todo item whenever the user changes it, or to add a new item when the user presses the Save button or the Enter key.
 

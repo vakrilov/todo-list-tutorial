@@ -1,4 +1,4 @@
-# A new component
+# \#4:  ✏ A new component
 
 In this chapter, we will write a whole new component. It will allow us to add an item to the todo list. It will be composed of the HTML elements `input` and `button`.
 
