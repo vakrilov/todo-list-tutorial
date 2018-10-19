@@ -6,8 +6,10 @@ We can also state general style rules to be used across the application. This is
 
 Angular gives us different style encapsulation methods, but we'll stick to the default.
 
-The Angular CLI has generated a general stylesheet for us at `src/style.css`. Paste the following code into this file:
+The Angular CLI has generated a general stylesheet for us at ![](.gitbook/assets/css.svg)**style.css** in 📁**src** folder. Paste the following code into this file:
 
+{% code-tabs %}
+{% code-tabs-item title="style.css" %}
 ```css
 html, body, div, span,
 h1, p, ul, li {
@@ -49,8 +51,10 @@ ol, ul {
   background: lightslategrey;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-> How does the project know to look at this file? In the Angular CLI configuration file `.angular-cli.json` under `apps[0].styles`, you can state the files for the build tool to take and add to the project. You can open the browser's dev tools and see the style inside the element:
+> How does the project know to look at this file? In the Angular CLI configuration file ![](.gitbook/assets/json.svg) **angular.json** under `apps[0].styles`, you can state the files for the build tool to take and add to the project. You can open the browser's dev tools and see the style inside the element:
 
 ```markup
 <html>
@@ -68,8 +72,10 @@ ol, ul {
 
 Now let's add style specifically to the `todo-list-manager` component.
 
-Open the file `list-manager.component.css` and paste the following style inside:
+Open the file ![](.gitbook/assets/css.svg)**list-manager.component.css** and paste the following style inside:
 
+{% code-tabs %}
+{% code-tabs-item title="list-manager.component.css" %}
 ```css
 .todo-app {
   position: relative;
@@ -124,11 +130,15 @@ Open the file `list-manager.component.css` and paste the following style inside:
   margin-bottom: 20px;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-How does this stylesheet get attached to the `todo-list-manager` component? Look at the file `list-manager.component.ts`. One of the properties in the object passed to the `@Component` decorator is `styleUrls`. It's a list of stylesheets to be used by Angular, which encapsulates the style within the component.
+How does this stylesheet get attached to the `todo-list-manager` component? Look at the file ![](.gitbook/assets/component.svg) **list-manager.component.ts**. One of the properties in the object passed to the `@Component` decorator is `styleUrls`. It's a list of stylesheets to be used by Angular, which encapsulates the style within the component.
 
-Add the following style to `input.component.css`:
+Add the following style to ![](.gitbook/assets/css.svg) **input.component.css**:
 
+{% code-tabs %}
+{% code-tabs-item title="input.component.css" %}
 ```css
 .todo-input {
   padding: 4px 10px 4px;
@@ -146,9 +156,13 @@ Add the following style to `input.component.css`:
   flex-grow: 1;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-Add the following style to `item.component.css`:
+Add the following style to ![](.gitbook/assets/css.svg)**item.component.css**:
 
+{% code-tabs %}
+{% code-tabs-item title="item.component.css" %}
 ```css
 .todo-item {
   padding: 10px 0;
@@ -177,12 +191,16 @@ Add the following style to `item.component.css`:
   background: darkred;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Now you'll want to update your component templates to use all the CSS classes you just created.
 
 In `ListManagerComponent`:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="list-manager.component.ts" %}
+```typescript
 <div class="todo-app">
   <h1>
     {{ title }}
@@ -197,10 +215,14 @@ In `ListManagerComponent`:
   </ul>
 </div>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 In `InputComponent`:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="input.component.ts" %}
+```typescript
 <input class="todo-input"
       [value]="title"
       (keyup.enter)="changeTitle($event.target.value)"
@@ -209,18 +231,32 @@ In `InputComponent`:
   Save
 </button>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 In `ItemComponent`:
 
-```markup
+{% code-tabs %}
+{% code-tabs-item title="item.component.ts" %}
+```typescript
 <div class="todo-item">
   {{ todoItem.title }}
 </div>
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 You can change the style as you wish - the size of elements, the colors - however you'd like!
 
+{% hint style="info" %}
 Note: You can use SCSS files in the project, which is a nicer way to write style. It has great features that help the developer. SCSS files are compiled to CSS when the project is built.
+{% endhint %}
 
+
+
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-13_Adding_Style)
+{% endhint %}
+
+
 

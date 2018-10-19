@@ -33,8 +33,10 @@ There are a few more wonderful methods you can use, as described [here](https://
 
 In the following section, we will build a local storage service that later on will be used to store our todo list items. As in earlier chapters, we will generate the service using the Angular CLI. We will name the new service component `todo-list-storage`
 
-The new file, `todo-list-storage.service.ts`, will be created with the following code:
+The new file, ![](.gitbook/assets/service.svg)**todo-list-storage.service.ts**, will be created with the following code:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 import { Injectable } from '@angular/core';
 
@@ -45,45 +47,69 @@ export class TodoListStorageService {
 
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 **If something looks unfamiliar/odd to you, please refer to the** [**Service chapter**](service.md) **for more detailed information about services.**
 
-We need to provide the service in our ngModule. Open `app.module.ts` and add the new class to the `providers` list:
+We need to provide the service in our ngModule. Open ![](.gitbook/assets/module.svg)**app.module.ts** and add the new class to the `providers` list:
 
+{% code-tabs %}
+{% code-tabs-item title="app.module.ts" %}
 ```typescript
 providers: [TodoListService, TodoListStorageService],
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Make sure the class is also imported into the file:
 
+{% code-tabs %}
+{% code-tabs-item title="app.module.ts" %}
 ```typescript
 import { TodoListStorageService } from './todo-list-storage.service';
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Lets start by adding a private property to our service `todoList` which will hold the list items.
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 private todoList;
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 In addition, let's add a constant that will store the name of the key we want to use for our local storage, add it right after the imports:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 const storageName = 'aah_todo_list';
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Now we want to initialize this property with data, by retrieving it from `localStorage`, so within the constructor, add:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 constructor() {
   this.todoList = JSON.parse(localStorage.getItem(storageName));
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Wait! Wait! why `JSON.parse`? The answer is simple: As described earlier in this tutorial, local storage stores data as key-value pairs, and the values are stored as **strings**. So, if we want to have a real object to work with, we must parse the string into a valid object.
 
 Now let's start doing some real stuff, but first we will declare all the public methods we want to expose in this service, which are **get, post, put**, and **destroy**. Our service should now look similar to:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 import { Injectable } from '@angular/core';
 
@@ -112,6 +138,8 @@ export class TodoListStorageService {
 
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 We will now implement them one by one.
 
@@ -119,11 +147,15 @@ We will now implement them one by one.
 
 This method will simply return the current state of items stored in the service:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   get() {
     return [...this.todoList];
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 If you are not familiar with the `...` operator, please refer to [this documentation](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator) for more information.
 
@@ -131,17 +163,23 @@ If you are not familiar with the `...` operator, please refer to [this documenta
 
 This method will be responsible for adding a new item, and returning the new list. It accepts one parameter, `item`, which will be the item to add:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   post(item) {
     this.todoList.push(item);
     return this.get();
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Some of you might notice that we just pushed a new item to the array. But what about the local storage? We must also synchronize it with the new array!
 
 Lets add a new **private** method in our service, which will be used internally to update the stored list:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   private update() {
     localStorage.setItem(storageName, JSON.stringify(this.todoList));
@@ -149,36 +187,50 @@ Lets add a new **private** method in our service, which will be used internally 
     return this.get();
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Let's explain. Here we use the simple method of `setItem`, which takes a key \(the first argument\) and a string value \(the second argument\) and stores it in local storage. After we update the value, we simply return the new list using the `get` method we implemented earlier.
 
 Now we need to modify our `post` method to use `update` so everything is synchronized in harmony:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   post(item) {
     this.todoList.push(item);
     return this.update();
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 ### put
 
 Here we want to update an existing item. Before that, let's add another private helper method `findItemIndex`, which will simply return the index of an item within the list array:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   private findItemIndex(item) {
     return this.todoList.indexOf(item);
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Now, we can use `Object.assign` to update an existing item:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   put(item, changes) {
     Object.assign(this.todoList[this.findItemIndex(item)], changes);
     return this.update();
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 So what is going on here? `Object.assign` takes a target object \(the first argument\) and source objects \(all the rest of the arguments\), and copies the source objects to the target object. If a property exists on both the target and a source, this method will replace the old value with the new one. Here we want to update an item in the list, so first we find its index in the array, and then apply the changes to it. At the end, we want to synchronize the local storage \(`this.update`\) and return the new list.
 
@@ -186,12 +238,16 @@ So what is going on here? `Object.assign` takes a target object \(the first argu
 
 This method will remove an item from the list and then synchronize with local storage:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
   destroy(item) {
     this.todoList.splice(this.findItemIndex(item), 1);
     return this.update();
   }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 `splice(i, n)` removes `n` items starting from index `i`. In our code, we first find the index of the item to remove, and remove only it \(that's why we use 1 as the second parameter\).
 
@@ -199,6 +255,8 @@ This method will remove an item from the list and then synchronize with local st
 
 Let's assume we want our todo list to always have some default data to start with. We can add it by modifying our service, by adding in the constants section \(after the imports\):
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 const defaultList = [
   { title: 'install NodeJS' },
@@ -209,14 +267,20 @@ const defaultList = [
   { title: 'deploy app' },
 ];
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 And then modify our constructor:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list-storage.service.ts" %}
 ```typescript
 constructor() {
   this.todoList = JSON.parse(localStorage.getItem(storageName)) || defaultList;
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The above will make sure that if data was not yet stored in `localStorage`, our service will still have some default data to return. This also means you can completely remove the `todoList` array from `TodoListService`, since now the default list is handled here.
 
@@ -224,19 +288,27 @@ The above will make sure that if data was not yet stored in `localStorage`, our 
 
 Our service is now ready for work!
 
-Now for our app to use the new local storage service, let's open up `todo-list.service.ts` and modify it.
+Now for our app to use the new local storage service, let's open up ![](.gitbook/assets/service.svg) **todo-list.service.ts** and modify it.
 
 First we need to import the new service:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list.service.ts" %}
 ```typescript
 import { TodoListStorageService } from './todo-list-storage.service';
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Then, we need to inject it in the constructor so we will have an instance to work with:
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list.service.ts" %}
 ```typescript
 constructor(private storage:TodoListStorageService) { }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 This will let us use `this.storage` across the todo-list service.
 
@@ -244,6 +316,8 @@ Let's also modify the current methods:
 
 **Before**
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list.service.ts" %}
 ```typescript
 getTodoList() {
   return this.todoList;
@@ -253,9 +327,13 @@ addItem(item) {
   this.todoList.push(item);
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 **After**
 
+{% code-tabs %}
+{% code-tabs-item title="todo-list.service.ts" %}
 ```typescript
 getTodoList() {
   return this.storage.get();
@@ -265,14 +343,20 @@ addItem(item) {
   return this.storage.post(item);
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-Now we have one last modification to make. Open up `list-manager.component.ts` and modify the `addItem` method this way:
+Now we have one last modification to make. Open up ![](.gitbook/assets/component.svg)**list-manager.component.ts** and modify the `addItem` method this way:
 
+{% code-tabs %}
+{% code-tabs-item title=" list-manager.component.ts" %}
 ```typescript
 addItem(title): void {
   this.todoList = this.todoListService.addItem({ title });
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 The above change will make sure that when we add a new item, our list will also be updated visually.
 
@@ -280,5 +364,9 @@ The above change will make sure that when we add a new item, our list will also 
 
 In this tutorial we learned what local storage is and how to use it. We saw that `localStorage` is a great and a pretty straight-forward tool for developers to store data locally on the users' computers/devices. We then implemented a new service that uses `localStorage` to store the todo-list items, and updated the rest of the components to support this new service.
 
+{% hint style="success" %}
 [See the results on StackBlitz](https://stackblitz.com/github/angularbootcamp/todo-list-tutorial-steps/tree/step-16_Local_storage)
+{% endhint %}
+
+
 
