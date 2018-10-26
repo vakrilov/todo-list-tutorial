@@ -1,4 +1,4 @@
-# \#13: 💅 Adding Style
+# \#14: 💅 Adding Style
 
 With Angular, we can give style to components in a way that will not affect the rest of the application. It's a good practice to encapsulate the component-related style this way.
 

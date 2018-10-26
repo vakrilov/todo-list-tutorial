@@ -1,4 +1,4 @@
-# \#16: 💾 Local storage
+# \#17: 💾 Local storage
 
 ## What is local storage?
 

@@ -1,4 +1,4 @@
-# \#15: 🎁 Add more abilities to service
+# \#16: 🎁 Add Items Using the Service
 
 In this chapter, we'll improve our service by adding more abilities.
 

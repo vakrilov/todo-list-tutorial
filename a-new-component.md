@@ -4,7 +4,7 @@ In this chapter, we will write a whole new component. It will allow us to add an
 
 We'll use the Angular CLI to generate all the needed files and boilerplate for us. StackBlitz makes it easier. Go to the app folder and then select by right clicking the component option:
 
-![right click at app folder](.gitbook/assets/image.png)
+![right click at app folder](.gitbook/assets/image%20%281%29.png)
 
 Name the component `input` and also make sure it has an inline-template.
 

@@ -1,4 +1,4 @@
-# \#18: 🔘 Adding a checkbox
+# \#19: 🔘 Adding a checkbox
 
 We are now able to interact with our todo list by removing items. But what if we want to complete items and still be able to see them in our list, with a line through the todo title? Enter the checkbox!
 
