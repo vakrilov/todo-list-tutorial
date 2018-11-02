@@ -18,7 +18,7 @@ This element is a actually an Angular Component, defined in the file
 ![](.gitbook/assets/component.svg)**app.component.ts** with the class named **`AppComponent`**. \(We'll take a look at it in the next chapter\).
 
 {% hint style="info" %}
-StackBlitz![](.gitbook/assets/stackblitz.png) creates the project with the default prefix `app` as component selector. So the element you'll see will be `<app-root>`You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** \( old: ![](.gitbook/assets/json.svg) .**angular.json** \). We use:  **`todo`**.
+StackBlitz![](.gitbook/assets/stackblitz.png) creates the project with the default prefix `app` as component selector. So the element you'll see will be `<app-root>`You can change the configuration in the file ![](.gitbook/assets/json.svg)**angular.json** \( old: ![](.gitbook/assets/json.svg) .**angular-cli.json** \). We use:  **`todo`**.
 {% endhint %}
 
 \*\*\*\*
